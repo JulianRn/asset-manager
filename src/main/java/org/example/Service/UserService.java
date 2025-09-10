@@ -1,7 +1,5 @@
 package org.example.Service;
 
-import com.sun.jdi.request.DuplicateRequestException;
-import org.example.Models.DTO.UserDTO;
 import org.example.Models.DTO.UserRegestrationDTO;
 import org.example.Models.DataModels.User;
 import org.example.Repository.UsersRepository;
@@ -30,20 +28,20 @@ public class UserService {
                     "Custommer with id [%s] not found".formatted(id)));
     }
 
-    public void createNewUser (UserRegestrationDTO userRegestrationDTO) {
+    public void registerUser (UserRegestrationDTO userRegestrationDTO) {
         // TODO: Create validation to check if email already exists
-        String userEmail = userRegestrationDTO.email();
-        if(usersRepository.existByEmail(userEmail)) {
-            throw new RuntimeException(
-                    "This email is already in usage."
-            );
-        }
+//        String userEmail = userRegestrationDTO.username();
+//        if(usersRepository.existByUsername(userEmail)) {
+//            throw new RuntimeException(
+//                    "This email is already in usage."
+//            );
+//        }
 
         User user = new User(
                 userRegestrationDTO.firstName(),
                 userRegestrationDTO.lastName(),
-                userRegestrationDTO.email(),
-                passwordEncoder.encode(userRegestrationDTO.hashedPassword())
+                userRegestrationDTO.username(),
+                passwordEncoder.encode(userRegestrationDTO.password())
         );
         usersRepository.save(user);
     }

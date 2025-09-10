@@ -12,7 +12,7 @@ public class UserMapper {
                 user.getId(),
                 user.getLastName(),
                 user.getFirstName(),
-                user.getEmail(),
+                user.getUsername(),
                 user.getUserInvestments()
         );
     }

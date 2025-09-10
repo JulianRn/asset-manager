@@ -15,18 +15,26 @@ public class User {
     private String firstName;
     private String lastName;
 
-    private String email;
+    private String username;
 
-    private String hashedPassword;
+    private String password;
 
     private ArrayList<Investment> userInvestments;
 
-    public User(String firstName, String lastName, String email, String hashedPassword)  {
+    public User(String firstName, String lastName, String username, String password)  {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.hashedPassword = hashedPassword;
+        this.username = username;
+        this.password = password;
         this. userInvestments = new ArrayList<>();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getId(){
@@ -41,8 +49,8 @@ public class User {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public ArrayList<Investment> getUserInvestments() {
@@ -57,7 +65,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String username) {
+        this.username = username;
     }
 }

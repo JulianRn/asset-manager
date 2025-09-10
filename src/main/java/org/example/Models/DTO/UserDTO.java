@@ -8,6 +8,6 @@ public record UserDTO (
         String id,
         String lastName,
         String firstName,
-        String email,
+        String username,
         ArrayList<Investment> userInvestments
 ){}
