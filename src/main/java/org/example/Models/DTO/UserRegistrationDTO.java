@@ -1,6 +1,6 @@
 package org.example.Models.DTO;
 
-public record UserRegestrationDTO(
+public record UserRegistrationDTO(
         String firstName,
         String lastName,
         String username,

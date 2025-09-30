@@ -2,7 +2,7 @@ package org.example.Controller;
 
 import org.example.config.DTOMapper.UserMapper;
 import org.example.Models.DTO.UserDTO;
-import org.example.Models.DTO.UserRegestrationDTO;
+import org.example.Models.DTO.UserRegistrationDTO;
 import org.example.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,8 +36,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registrateUser(@RequestBody UserRegestrationDTO userRegestrationDTO) {
-        userService.registerUser(userRegestrationDTO);
+    public ResponseEntity<?> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
+        userService.registerUser(userRegistrationDTO);
         return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

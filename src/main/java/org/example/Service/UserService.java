@@ -1,6 +1,7 @@
 package org.example.Service;
 
-import org.example.Models.DTO.UserRegestrationDTO;
+import com.sun.jdi.request.DuplicateRequestException;
+import org.example.Models.DTO.UserRegistrationDTO;
 import org.example.Models.DataModels.User;
 import org.example.Repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -28,20 +30,17 @@ public class UserService {
                     "Custommer with id [%s] not found".formatted(id)));
     }
 
-    public void registerUser (UserRegestrationDTO userRegestrationDTO) {
-        // TODO: Create validation to check if email already exists
-//        String userEmail = userRegestrationDTO.username();
-//        if(usersRepository.existByUsername(userEmail)) {
-//            throw new RuntimeException(
-//                    "This email is already in usage."
-//            );
-//        }
+    public void registerUser (UserRegistrationDTO userRegistrationDTO) {
+        User existingUser = usersRepository.findByUsername(userRegistrationDTO.username());
+        if (Objects.equals(existingUser.getUsername(), userRegistrationDTO.username())) {
+            throw new DuplicateRequestException("The given username is already in use");
+        }
 
         User user = new User(
-                userRegestrationDTO.firstName(),
-                userRegestrationDTO.lastName(),
-                userRegestrationDTO.username(),
-                passwordEncoder.encode(userRegestrationDTO.password())
+                userRegistrationDTO.firstName(),
+                userRegistrationDTO.lastName(),
+                userRegistrationDTO.username(),
+                passwordEncoder.encode(userRegistrationDTO.password())
         );
         usersRepository.save(user);
     }
