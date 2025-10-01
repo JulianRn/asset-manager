@@ -1,6 +1,7 @@
 package org.example.Controller;
 
 import jakarta.validation.Valid;
+import org.example.Exception.ResourceNotFoundException;
 import org.example.Models.DataModels.Asset;
 import org.example.Service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,10 @@ public class AssetController {
     }
     @GetMapping("/{id}")
     public Asset getAssetById(@PathVariable String id) {
-        return assetService.getAsset(id);
+        return assetService.getAsset(id)
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Asset not found for this id : " + id)
+                );
     }
 
     @PostMapping

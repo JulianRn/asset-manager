@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvestmentService {
@@ -17,8 +18,8 @@ public class InvestmentService {
         investmentRepository.save(investment);
     }
 
-    public Investment getInvestmentById (String id) {
-        return investmentRepository.findById(id).orElse(null);
+    public Optional<Investment> getInvestmentById (String id) {
+        return investmentRepository.findById(id);
     }
 
     public List<Investment> getAllInvestments () {

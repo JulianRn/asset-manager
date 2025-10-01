@@ -1,5 +1,6 @@
 package org.example.Controller;
 
+import org.example.Exception.ResourceNotFoundException;
 import org.example.Models.DataModels.Investment;
 import org.example.Service.InvestmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class InvestmentController {
 
     @GetMapping("/{id}")
     public Investment getInvestmentById (@PathVariable String id) {
-        return investmentService.getInvestmentById(id);
+        return investmentService.getInvestmentById(id)
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Investment not found for this id : " + id)
+                );
     }
 }

@@ -1,5 +1,7 @@
 package org.example.Controller;
 
+import org.example.Exception.ResourceNotFoundException;
+import org.example.Models.DataModels.User;
 import org.example.config.DTOMapper.UserMapper;
 import org.example.Models.DTO.UserDTO;
 import org.example.Models.DTO.UserRegistrationDTO;
@@ -32,7 +34,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDTO getUserById(@PathVariable String id) {
         return userMapper.toUserDTO(
-                userService.getUserById(id));
+                userService.getUserById(id)
+                        .orElseThrow(
+                                () -> new ResourceNotFoundException("User not found for this id : " + id)
+                        )
+        );
     }
 
     @PostMapping
