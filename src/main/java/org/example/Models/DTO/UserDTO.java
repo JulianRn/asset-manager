@@ -1,5 +1,6 @@
 package org.example.Models.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import org.example.Models.DataModels.Investment;
 
 import java.util.ArrayList;

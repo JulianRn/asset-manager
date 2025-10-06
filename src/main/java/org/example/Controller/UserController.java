@@ -1,7 +1,7 @@
 package org.example.Controller;
 
+import jakarta.validation.Valid;
 import org.example.Exception.ResourceNotFoundException;
-import org.example.Models.DataModels.User;
 import org.example.config.DTOMapper.UserMapper;
 import org.example.Models.DTO.UserDTO;
 import org.example.Models.DTO.UserRegistrationDTO;
@@ -42,8 +42,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
         userService.registerUser(userRegistrationDTO);
-        return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
