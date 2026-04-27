@@ -32,6 +32,5 @@ public class UserRepository {
 
         assertNotNull(found);
         assertEquals("tester@test.de", found.getUsername());
-        System.out.println("Testergebniss: " + found.getUsername());
     }
 }
