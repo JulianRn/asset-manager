@@ -1,4 +1,4 @@
-package org.example.finance.db;
+package org.example.DB;
 
 import org.example.Models.DataModels.User;
 import org.example.Repository.UsersRepository;
@@ -12,7 +12,7 @@ import static com.mongodb.assertions.Assertions.assertNotNull;
 
 
 @DataMongoTest
-public class TestUserRepository {
+public class UserRepository {
 
     @Autowired
     private UsersRepository usersRepository;
