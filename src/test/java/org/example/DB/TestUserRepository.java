@@ -1,4 +1,4 @@
-package org.example.dbTests;
+package org.example.finance.db;
 
 import org.example.Models.DataModels.User;
 import org.example.Repository.UsersRepository;
