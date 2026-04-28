@@ -14,7 +14,7 @@ public class User {
 
     private String firstName;
     private String lastName;
-
+    // username represent email
     private String username;
 
     private String password;
