@@ -1,29 +1,45 @@
 package org.example;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.core.env.Environment;
+
+import java.awt.*;
+import java.net.URI;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 @SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
-public class Main {
+public class Main implements CommandLineRunner {
+
+    @Autowired
+    private Environment environment;
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        String port = environment.getProperty("local.server.port", "8080");
+        String url = "http://localhost:" + port;
 
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//        return args -> {
-//            System.out.println("Lets inspect the beans provided by Spring Boot:");
-//
-//            String[] beanNames = ctx.getBeanDefinitionNames();
-//            Arrays.sort(beanNames);
-//            for (String beanName: beanNames) {
-//                System.out.println(beanName);
-//            }
-//        };
-//    }
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (Exception e) {
+                System.out.println("Exception: " + e);
+            }
+        } else {
+            try {
+                new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", url)
+                        .start();
+            } catch (Exception e) {
+                System.out.println("Exception: " + e);
+            }
+        }
+    }
 }
