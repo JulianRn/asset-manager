@@ -22,8 +22,10 @@
 
 ## 📖 Overview
 
-**asset-manager** is a  backend tailored for managing assets, users, and investments for financial purposes.  
-Built with **Spring Boot** and **MongoDB**
+**Asset-Manager** is a  backend tailored for managing assets, users, and investments for financial purposes.
+Built with **Spring Boot** and **MongoDB**. The application provides an API to execute CRUD operations, for example 
+creating, reading, updating and deleting assets, users or investments. The project includes a swagger api documentation,
+which provides a GUI to use the API. An alternative is to use postman to access the API.
 
 <!--### 🚀 Why asset-manager?
 
@@ -64,3 +66,6 @@ cd asset-manager
 
 # 3. Build the project
 gradle build
+```
+The application runs locally with MongoDB. That is why a MongoDB should be put on to make use of the Java Backend.
+After the MongoDB is configured and ready to use, the port of the database needs to be added in the application.yml.

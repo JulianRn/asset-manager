@@ -12,7 +12,10 @@ import java.net.URI;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
-@SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication(
+        exclude = {UserDetailsServiceAutoConfiguration.class},
+        scanBasePackages = "org.example"
+)
 public class Main implements CommandLineRunner {
 
     @Autowired
